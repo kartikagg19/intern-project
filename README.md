@@ -58,6 +58,14 @@ The server will be running on `http://localhost:3000`.
 - `GET /api/dashboard/category-totals` - Category wise income/expense totals. Optional query `?type=(INCOME|EXPENSE)`.
 - `GET /api/dashboard/recent-activity` - List latest records up to a limit limit. Optional query `?limit=5`.
 
+## Technical Decisions and Trade-offs
+
+1. **Express Over NestJS/Fastify**: Used standard Express to keep the codebase simple and readable for assignment assessment, avoiding the high boilerplate complexity of heavier enterprise modules.
+2. **Prisma + SQLite**: Chosen strictly for optimal developer experience and submission simplicity. SQLite prevents the local evaluator from having to boot up Docker containers or Postgres pipelines. Prisma (version locked to 5.x to prevent Windows experimental CLI parsing bugs) allows safe, code-first data management.
+3. **Zod Validation**: Replaced manual `if/else` input validations with strict `Zod` schemas to ensure predictable `req.body` handling, preventing nasty upstream errors.
+4. **Vanilla Monolithic Frontend**: To impress without the overhead of distributing two separate repositories or running concurrent Next.js ports, the frontend was built natively (`HTML/JS/CSS`) inside the `public/` directory and routed statically in Express. This makes launching everything a single command (`npm run dev`).
+5. **Stateless JWT**: Implemented JSON Web Tokens instead of Stateful Sessions. This removes the need for Redis caching mechanisms and keeps the API completely independent and horizontally scalable.
+
 ## Future Improvements for a Production Environment
 - Replace SQLite with PostgreSQL for concurrent stability.
 - Add refreshing token logic to expire and refresh access tokens securely.
