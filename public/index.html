@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Finance Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Background Animated Orbs -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+
+  <!-- Auth View -->
+  <div id="auth-view" class="view active">
+    <div class="glass-panel auth-card">
+      <div class="auth-header">
+        <span class="material-icons logo-icon">account_balance_wallet</span>
+        <h2>Finance<span class="highlight">Sphere</span></h2>
+        <p>Login to your portal</p>
+      </div>
+
+      <form id="login-form">
+        <div class="input-group">
+          <label>Email Address</label>
+          <input type="email" id="email" required value="admin@finance.com" placeholder="admin@finance.com" />
+        </div>
+        <div class="input-group">
+          <label>Password</label>
+          <input type="password" id="password" required value="password123" placeholder="••••••••" />
+        </div>
+        
+        <div id="login-error" class="error-msg"></div>
+        <button type="submit" class="btn-primary w-100">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Dashboard View -->
+  <div id="dashboard-view" class="view" style="display: none;">
+    <nav class="glass-panel navbar">
+      <div class="nav-brand">
+        <span class="material-icons">account_balance_wallet</span>
+        <h2>Finance<span class="highlight">Sphere</span></h2>
+      </div>
+      <div class="nav-actions">
+        <span id="user-info">admin@finance.com (ADMIN)</span>
+        <button id="logout-btn" class="btn-outline">Logout</button>
+      </div>
+    </nav>
+
+    <main class="dashboard-content">
+      <div class="dashboard-header">
+        <h1>Overview</h1>
+        <p>Welcome back to your financial summary.</p>
+      </div>
+
+      <!-- Financial Summaries -->
+      <div class="summary-cards">
+        <div class="glass-panel stat-card">
+          <div class="stat-icon income-bg"><span class="material-icons">arrow_upward</span></div>
+          <div class="stat-info">
+            <p>Total Revenue</p>
+            <h3 id="stat-income">$0</h3>
+          </div>
+        </div>
+        <div class="glass-panel stat-card">
+          <div class="stat-icon expense-bg"><span class="material-icons">arrow_downward</span></div>
+          <div class="stat-info">
+            <p>Total Expenses</p>
+            <h3 id="stat-expense">$0</h3>
+          </div>
+        </div>
+        <div class="glass-panel stat-card">
+          <div class="stat-icon balance-bg"><span class="material-icons">account_balance</span></div>
+          <div class="stat-info">
+            <p>Net Balance</p>
+            <h3 id="stat-balance">$0</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="dashboard-grid">
+        <!-- Recent Activity -->
+        <div class="glass-panel recent-activity">
+          <h3>Recent Transactions</h3>
+          <div class="transaction-list" id="transaction-list">
+            <div class="loader">Loading...</div>
+          </div>
+        </div>
+
+        <!-- Category Overview -->
+        <div class="glass-panel category-overview">
+          <h3>Category Breakdown</h3>
+          <div class="category-list" id="category-list">
+            <div class="loader">Loading...</div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
